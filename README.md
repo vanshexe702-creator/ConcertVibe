@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🎵 ConcertVibe — Concert Ticket Booking System
 
 A full-stack concert ticket booking system with a premium dark-themed UI, interactive seat selection, payment simulation, e-ticket generation, and complete admin panel.
@@ -159,3 +160,6 @@ project/
 
 ## 📜 License
 MIT License — © 2026 ConcertVibe
+=======
+# ConcertVibe
+>>>>>>> 1e4ba0f7681d5427683e209dec2d43487c754316
