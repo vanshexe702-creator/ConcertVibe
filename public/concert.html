@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concert Details — ConcertVibe</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="/" class="navbar-brand"><span class="icon">🎵</span><span>ConcertVibe</span></a>
+    <div class="navbar-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/#concerts">Concerts</a>
+      <a href="/history.html" id="navHistory" class="hidden">My Bookings</a>
+    </div>
+    <div class="navbar-actions">
+      <div id="authButtons"><a href="/login.html" class="btn btn-ghost btn-sm">Login</a><a href="/register.html" class="btn btn-primary btn-sm">Sign Up</a></div>
+      <div id="userMenu" class="hidden" style="display:none"><button class="btn btn-ghost btn-sm" id="userMenuBtn">👤 <span id="userName"></span></button></div>
+      <button class="navbar-toggle" id="navToggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Concert Hero -->
+  <div class="concert-detail" id="concertDetail">
+    <div class="concert-hero" id="concertHero">
+      <div class="concert-hero-bg" id="heroBg"></div>
+      <div class="concert-hero-content">
+        <div class="container">
+          <span class="badge badge-purple" id="concertCategory"></span>
+          <h1 id="concertTitle" style="margin-top:var(--space-sm)"></h1>
+          <p style="color:var(--primary-300);font-size:1.2rem;font-weight:500;" id="concertArtist"></p>
+          <div id="concertCountdown" style="margin-top:var(--space-md);color:var(--accent-400);font-weight:600;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Body -->
+    <div class="concert-detail-body container">
+      <!-- Left: Info + Seat Map -->
+      <div class="concert-info-section">
+        <div class="concert-info-grid">
+          <div class="info-item"><div class="info-label">📍 Venue</div><div class="info-value" id="concertVenue"></div></div>
+          <div class="info-item"><div class="info-label">🏙️ City</div><div class="info-value" id="concertCity"></div></div>
+          <div class="info-item"><div class="info-label">📅 Date</div><div class="info-value" id="concertDate"></div></div>
+          <div class="info-item"><div class="info-label">🕐 Time</div><div class="info-value" id="concertTime"></div></div>
+          <div class="info-item"><div class="info-label">🎫 Regular Price</div><div class="info-value" id="concertPrice" style="color:var(--accent-400)"></div></div>
+          <div class="info-item"><div class="info-label">⭐ VIP Price</div><div class="info-value" id="concertVipPrice" style="color:var(--warning)"></div></div>
+        </div>
+        <div style="margin:var(--space-xl) 0">
+          <h3 style="margin-bottom:var(--space-md)">About This Event</h3>
+          <p id="concertDescription"></p>
+        </div>
+        <!-- Seat Map -->
+        <h3 style="margin-bottom:var(--space-md)">🪑 Select Your Seats</h3>
+        <p style="font-size:0.9rem;margin-bottom:var(--space-lg)" id="loginPrompt" class="hidden">
+          Please <a href="/login.html">login</a> to select seats and book tickets.
+        </p>
+        <div class="seat-map-container" id="seatMapContainer">
+          <div class="seat-stage">★ STAGE ★</div>
+          <div class="seat-grid" id="seatGrid"></div>
+          <div class="seat-legend">
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--bg-elevated)"></div>Available</div>
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--primary-400)"></div>Selected</div>
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:rgba(245,158,11,0.15);border-color:rgba(245,158,11,0.3)"></div>VIP</div>
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--bg-dark);opacity:0.4"></div>Booked</div>
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--bg-darkest);opacity:0.2"></div>Blocked</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Booking Sidebar -->
+      <div class="booking-sidebar" id="bookingSidebar">
+        <h3>🎫 Booking Summary</h3>
+        <div class="booking-summary" id="bookingSummary">
+          <p style="color:var(--text-muted);font-size:0.9rem;" id="noSeatsMsg">Select seats from the map to begin</p>
+          <div id="selectedSeatsList" class="hidden">
+            <div style="margin-bottom:var(--space-md)">
+              <label style="font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;">Selected Seats</label>
+              <div id="seatTags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--space-sm)"></div>
+            </div>
+            <div id="summaryRows"></div>
+          </div>
+        </div>
+        <!-- Promo Code -->
+        <div class="form-group" id="promoSection" style="display:none">
+          <label for="promoCode">Promo Code</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" class="form-input" id="promoCode" placeholder="Enter code" style="text-transform:uppercase">
+            <button class="btn btn-secondary btn-sm" id="applyPromo">Apply</button>
+          </div>
+        </div>
+        <!-- Payment Method -->
+        <div id="paymentSection" style="display:none">
+          <h4 style="margin-bottom:var(--space-md);font-size:1rem;">Payment Method</h4>
+          <div class="payment-tabs">
+            <button class="payment-tab active" data-method="card">💳 Card</button>
+            <button class="payment-tab" data-method="upi">📱 UPI</button>
+            <button class="payment-tab" data-method="netbanking">🏦 Bank</button>
+          </div>
+          <div id="paymentForm">
+            <div id="cardForm">
+              <div class="form-group"><label>Card Number</label><input type="text" class="form-input" placeholder="4242 4242 4242 4242" maxlength="19"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)">
+                <div class="form-group"><label>Expiry</label><input type="text" class="form-input" placeholder="MM/YY" maxlength="5"></div>
+                <div class="form-group"><label>CVV</label><input type="text" class="form-input" placeholder="123" maxlength="3"></div>
+              </div>
+            </div>
+            <div id="upiForm" style="display:none"><div class="form-group"><label>UPI ID</label><input type="text" class="form-input" placeholder="name@upi"></div></div>
+            <div id="netbankingForm" style="display:none"><div class="form-group"><label>Select Bank</label><select class="form-select"><option>State Bank of India</option><option>HDFC Bank</option><option>ICICI Bank</option><option>Axis Bank</option></select></div></div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg" style="width:100%;margin-top:var(--space-md)" id="bookBtn" disabled>Select seats to continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay hidden" id="loadingOverlay">
+    <div class="spinner"></div>
+    <p id="loadingText">Processing your booking...</p>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/countdown.js"></script>
+  <script src="/js/seatMap.js"></script>
+  <script src="/js/booking.js"></script>
+</body>
+</html>

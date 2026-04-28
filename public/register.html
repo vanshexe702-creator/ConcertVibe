@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — ConcertVibe</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <a href="/" style="display:block;text-align:center;margin-bottom:var(--space-xl);font-size:1.6rem;font-family:var(--font-display);font-weight:800;">
+        🎵 <span class="text-gradient">ConcertVibe</span>
+      </a>
+      <h1>Create Account</h1>
+      <p class="subtitle">Join ConcertVibe and never miss a show</p>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" class="form-input" id="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-input" id="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number (Optional)</label>
+          <input type="tel" class="form-input" id="phone" placeholder="+1 234 567 8900">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-input" id="password" placeholder="Min 6 characters" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" class="form-input" id="confirmPassword" placeholder="Repeat your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%" id="registerBtn">Create Account</button>
+      </form>
+      <div class="auth-footer">
+        Already have an account? <a href="/login.html">Sign in</a>
+      </div>
+    </div>
+  </div>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

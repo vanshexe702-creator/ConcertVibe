@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed — ConcertVibe</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <nav class="navbar"><a href="/" class="navbar-brand"><span class="icon">🎵</span><span>ConcertVibe</span></a><div class="navbar-actions"><a href="/" class="btn btn-ghost btn-sm">Home</a><a href="/history.html" class="btn btn-secondary btn-sm">My Bookings</a></div></nav>
+
+  <div class="confirmation-page">
+    <div class="confirmation-icon">🎉</div>
+    <h1>Booking <span class="text-gradient">Confirmed!</span></h1>
+    <p>Your tickets have been booked successfully. Check your email for confirmation.</p>
+
+    <!-- E-Ticket -->
+    <div class="ticket-card" id="ticketCard">
+      <div class="ticket-header">
+        <h2 id="ticketConcert"></h2>
+        <p id="ticketArtist"></p>
+      </div>
+      <div class="ticket-body">
+        <div class="ticket-info-grid">
+          <div class="ticket-info-item"><label>Ticket ID</label><span id="ticketId"></span></div>
+          <div class="ticket-info-item"><label>Name</label><span id="ticketName"></span></div>
+          <div class="ticket-info-item"><label>Venue</label><span id="ticketVenue"></span></div>
+          <div class="ticket-info-item"><label>City</label><span id="ticketCity"></span></div>
+          <div class="ticket-info-item"><label>Date</label><span id="ticketDate"></span></div>
+          <div class="ticket-info-item"><label>Time</label><span id="ticketTime"></span></div>
+          <div class="ticket-info-item"><label>Seats</label><span id="ticketSeats"></span></div>
+          <div class="ticket-info-item"><label>Total Paid</label><span id="ticketAmount" style="color:var(--accent-400);font-size:1.1rem;"></span></div>
+        </div>
+        <hr class="ticket-divider">
+        <div class="ticket-qr" id="ticketQR"></div>
+      </div>
+      <div class="ticket-footer">
+        <p>Present this e-ticket at the venue entrance. Keep your booking ID handy.</p>
+      </div>
+    </div>
+
+    <div class="confirmation-actions">
+      <button class="btn btn-primary" id="downloadPdfBtn">📥 Download PDF</button>
+      <button class="btn btn-secondary" onclick="window.print()">🖨️ Print Ticket</button>
+      <a href="/" class="btn btn-ghost">Browse More Concerts</a>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/ticket.js"></script>
+</body>
+</html>

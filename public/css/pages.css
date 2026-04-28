@@ -1,0 +1,195 @@
+/* ============================================================
+   Pages CSS — Page-specific layouts
+   ============================================================ */
+
+/* ─── Hero Section ─────────────────────────────────────────── */
+.hero {
+  position: relative; min-height: 70vh; display: flex; align-items: center;
+  padding: calc(70px + var(--space-3xl)) 0 var(--space-3xl);
+  background: var(--gradient-hero); overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(147,51,234,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(236,72,153,0.08) 0%, transparent 50%);
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to top, var(--bg-darkest), transparent);
+}
+.hero-content { position: relative; z-index: 1; text-align: center; max-width: 800px; margin: 0 auto; }
+.hero-content h1 { margin-bottom: var(--space-md); }
+.hero-content p { font-size: 1.15rem; max-width: 600px; margin: 0 auto var(--space-xl); }
+.hero-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; }
+.hero-stats { display: flex; justify-content: center; gap: var(--space-3xl); margin-top: var(--space-2xl); }
+.hero-stat { text-align: center; }
+.hero-stat .number { font-family: var(--font-display); font-size: 2rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-stat .label { font-size: 0.85rem; color: var(--text-muted); }
+
+/* Animated dots background */
+.hero-particles {
+  position: absolute; inset: 0; overflow: hidden; z-index: 0;
+}
+.hero-particles span {
+  position: absolute; width: 3px; height: 3px; background: var(--primary-400);
+  border-radius: 50%; opacity: 0.3; animation: float 6s ease-in-out infinite;
+}
+
+/* ─── Search & Filter Bar ──────────────────────────────────── */
+.search-section { padding: var(--space-xl) 0; position: relative; z-index: 10; margin-top: -40px; }
+.search-bar {
+  display: flex; gap: var(--space-md); align-items: center; flex-wrap: wrap;
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); padding: var(--space-md) var(--space-lg);
+  box-shadow: var(--shadow-lg);
+}
+.search-bar .search-input {
+  flex: 1; min-width: 200px; padding: 0.7rem 1rem 0.7rem 2.5rem;
+  background: var(--bg-surface); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); color: var(--text-primary);
+  font-size: 0.95rem; outline: none; position: relative;
+}
+.search-bar .search-input:focus { border-color: var(--primary-400); }
+.search-bar .search-icon { position: absolute; left: 36px; color: var(--text-muted); pointer-events: none; }
+.search-bar .filter-select {
+  padding: 0.7rem 1rem; background: var(--bg-surface);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+  color: var(--text-primary); font-size: 0.9rem; min-width: 140px; cursor: pointer; outline: none;
+  appearance: none;
+}
+
+/* ─── Concert Grid ─────────────────────────────────────────── */
+.concerts-section { padding: var(--space-2xl) 0 var(--space-3xl); }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-xl); }
+.section-header h2 { position: relative; }
+.concert-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-xl);
+}
+
+/* ─── Concert Detail Page ──────────────────────────────────── */
+.concert-detail { padding-top: 70px; }
+.concert-hero {
+  position: relative; height: 400px; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.concert-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: blur(2px) brightness(0.3);
+}
+.concert-hero-content {
+  position: relative; z-index: 1; padding: var(--space-2xl);
+  width: 100%; background: linear-gradient(to top, rgba(10,10,15,0.95), transparent);
+}
+.concert-detail-body {
+  display: grid; grid-template-columns: 1fr 380px; gap: var(--space-2xl);
+  padding: var(--space-2xl) var(--space-lg); max-width: var(--max-width); margin: 0 auto;
+}
+.concert-info-section { }
+.concert-info-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+.info-item { padding: var(--space-md); background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); }
+.info-item .info-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.info-item .info-value { font-weight: 600; font-size: 1rem; }
+
+/* Booking sidebar */
+.booking-sidebar {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); padding: var(--space-xl); height: fit-content;
+  position: sticky; top: 90px;
+}
+.booking-sidebar h3 { margin-bottom: var(--space-lg); }
+.booking-summary { margin: var(--space-lg) 0; }
+.summary-row { display: flex; justify-content: space-between; padding: var(--space-sm) 0; font-size: 0.9rem; }
+.summary-row.total { font-weight: 700; font-size: 1.1rem; border-top: 1px solid var(--border-subtle); padding-top: var(--space-md); margin-top: var(--space-sm); color: var(--accent-400); }
+
+/* ─── Auth Pages ───────────────────────────────────────────── */
+.auth-page {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  padding: var(--space-xl); background: var(--gradient-hero);
+}
+.auth-card {
+  background: var(--glass-bg); backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border); border-radius: var(--radius-xl);
+  padding: var(--space-2xl); width: 100%; max-width: 440px;
+  animation: scaleIn 0.4s ease-out;
+}
+.auth-card h1 { font-size: 1.8rem; text-align: center; margin-bottom: var(--space-xs); }
+.auth-card .subtitle { text-align: center; margin-bottom: var(--space-2xl); }
+.auth-card .auth-divider { display: flex; align-items: center; gap: var(--space-md); margin: var(--space-xl) 0; color: var(--text-muted); font-size: 0.85rem; }
+.auth-card .auth-divider::before, .auth-card .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-subtle); }
+.auth-footer { text-align: center; margin-top: var(--space-xl); font-size: 0.9rem; color: var(--text-muted); }
+
+/* ─── Booking History Page ─────────────────────────────────── */
+.history-page { padding: calc(70px + var(--space-2xl)) 0 var(--space-3xl); }
+.history-page .page-header { margin-bottom: var(--space-2xl); }
+.booking-list { display: flex; flex-direction: column; gap: var(--space-lg); }
+.booking-item {
+  display: grid; grid-template-columns: 120px 1fr auto; gap: var(--space-lg);
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); padding: var(--space-lg); align-items: center;
+  transition: all var(--transition-normal);
+}
+.booking-item:hover { border-color: var(--border-medium); }
+.booking-item-image { width: 120px; height: 80px; border-radius: var(--radius-md); overflow: hidden; background: var(--bg-elevated); }
+.booking-item-image img { width: 100%; height: 100%; object-fit: cover; }
+.booking-item-info h4 { margin-bottom: var(--space-xs); }
+.booking-item-info .meta { display: flex; flex-wrap: wrap; gap: var(--space-md); color: var(--text-muted); font-size: 0.85rem; margin-top: var(--space-xs); }
+.booking-item-actions { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-sm); }
+.booking-item-actions .amount { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--accent-400); }
+
+/* ─── Booking Confirmation Page ────────────────────────────── */
+.confirmation-page {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: calc(70px + var(--space-xl)) var(--space-lg) var(--space-xl);
+}
+.confirmation-icon { font-size: 4rem; margin-bottom: var(--space-md); animation: scaleIn 0.5s ease-out; }
+.confirmation-page h1 { margin-bottom: var(--space-sm); }
+.confirmation-page > p { margin-bottom: var(--space-2xl); }
+.confirmation-actions { display: flex; gap: var(--space-md); margin-top: var(--space-xl); justify-content: center; flex-wrap: wrap; }
+
+/* ─── Footer ───────────────────────────────────────────────── */
+.site-footer {
+  background: var(--bg-dark); border-top: 1px solid var(--border-subtle);
+  padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-2xl); max-width: var(--max-width); margin: 0 auto; }
+.footer-brand h3 { margin-bottom: var(--space-md); }
+.footer-brand p { font-size: 0.9rem; max-width: 300px; }
+.footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: var(--space-md); }
+.footer-col a { display: block; color: var(--text-muted); font-size: 0.9rem; padding: var(--space-xs) 0; transition: color var(--transition-fast); }
+.footer-col a:hover { color: var(--primary-300); }
+.footer-bottom { text-align: center; padding-top: var(--space-xl); margin-top: var(--space-xl); border-top: 1px solid var(--border-subtle); color: var(--text-muted); font-size: 0.85rem; max-width: var(--max-width); margin-left: auto; margin-right: auto; }
+
+/* ─── Payment Tabs ─────────────────────────────────────────── */
+.payment-tabs { display: flex; gap: 2px; background: var(--bg-surface); border-radius: var(--radius-md); padding: 3px; margin-bottom: var(--space-lg); }
+.payment-tab {
+  flex: 1; padding: var(--space-sm) var(--space-md); text-align: center;
+  border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 500;
+  color: var(--text-muted); cursor: pointer; transition: all var(--transition-fast);
+  border: none; background: none;
+}
+.payment-tab.active { background: var(--primary-500); color: white; }
+.payment-tab:hover:not(.active) { color: var(--text-primary); }
+
+/* ─── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .concert-detail-body { grid-template-columns: 1fr; }
+  .booking-sidebar { position: static; }
+}
+@media (max-width: 768px) {
+  .hero { min-height: 60vh; }
+  .hero-stats { gap: var(--space-xl); }
+  .search-bar { flex-direction: column; }
+  .concert-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .booking-item { grid-template-columns: 1fr; }
+  .booking-item-image { width: 100%; height: 160px; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: var(--space-md); }
+}

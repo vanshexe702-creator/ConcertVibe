@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seat Management — Admin Panel</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/admin/dashboard.html" class="navbar-brand"><span class="icon">🛡️</span><span>Admin Panel</span></a>
+    <div class="navbar-actions"><a href="/" class="btn btn-ghost btn-sm" target="_blank">View Site</a><button class="btn btn-danger btn-sm" id="adminLogout">Logout</button></div>
+  </nav>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header"><h3>Navigation</h3></div>
+      <nav class="admin-nav">
+        <a href="/admin/dashboard.html"><span class="nav-icon">📊</span>Dashboard</a>
+        <a href="/admin/concerts.html"><span class="nav-icon">🎵</span>Concerts</a>
+        <a href="/admin/bookings.html"><span class="nav-icon">🎫</span>Bookings</a>
+        <a href="/admin/seats.html" class="active"><span class="nav-icon">🪑</span>Seat Management</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-page-header"><h1>🪑 Seat Management</h1></div>
+      <div style="margin-bottom:var(--space-xl)">
+        <div class="form-group" style="max-width:400px">
+          <label>Select Concert</label>
+          <select class="form-select" id="concertSelect"><option value="">-- Choose a concert --</option></select>
+        </div>
+      </div>
+      <div id="seatSection" style="display:none">
+        <div style="display:flex;gap:var(--space-md);margin-bottom:var(--space-lg);flex-wrap:wrap;">
+          <button class="btn btn-danger btn-sm" id="blockBtn">🚫 Block Selected</button>
+          <button class="btn btn-secondary btn-sm" id="unblockBtn">✅ Unblock Selected</button>
+          <span style="color:var(--text-muted);font-size:0.85rem;align-self:center;" id="seatInfo"></span>
+        </div>
+        <div class="seat-map-container">
+          <div class="seat-stage">★ STAGE ★</div>
+          <div class="seat-grid" id="adminSeatGrid"></div>
+          <div class="seat-legend" style="margin-top:var(--space-lg)">
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--bg-elevated)"></div>Available</div>
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--primary-400)"></div>Selected</div>
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--bg-dark);opacity:0.4"></div>Booked</div>
+            <div class="seat-legend-item"><div class="seat-legend-box" style="background:var(--bg-darkest);opacity:0.2"></div>Blocked</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin/seats.js"></script>
+</body>
+</html>

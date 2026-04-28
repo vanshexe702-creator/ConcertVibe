@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book tickets for the hottest concerts and live events. Browse upcoming shows, select seats, and get your e-tickets instantly.">
+  <title>ConcertVibe — Live Concert Ticket Booking</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="/" class="navbar-brand">
+      <span class="icon">🎵</span>
+      <span>ConcertVibe</span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="/" class="active">Home</a>
+      <a href="#concerts">Concerts</a>
+      <a href="/history.html" id="navHistory" class="hidden">My Bookings</a>
+    </div>
+    <div class="navbar-actions">
+      <div id="authButtons">
+        <a href="/login.html" class="btn btn-ghost btn-sm">Login</a>
+        <a href="/register.html" class="btn btn-primary btn-sm">Sign Up</a>
+      </div>
+      <div id="userMenu" class="hidden" style="display:none;position:relative;">
+        <button class="btn btn-ghost btn-sm" id="userMenuBtn" style="display:flex;align-items:center;gap:8px;">
+          <span>👤</span>
+          <span id="userName"></span>
+        </button>
+        <div id="userDropdown" class="hidden" style="position:absolute;right:0;top:100%;margin-top:8px;background:var(--bg-elevated);border:1px solid var(--border-medium);border-radius:var(--radius-md);padding:8px;min-width:160px;z-index:100;">
+          <a href="/history.html" style="display:block;padding:8px 12px;border-radius:6px;color:var(--text-secondary);font-size:0.9rem;">📋 My Bookings</a>
+          <button id="logoutBtn" style="display:block;width:100%;padding:8px 12px;border-radius:6px;color:var(--error);font-size:0.9rem;background:none;border:none;text-align:left;cursor:pointer;">🚪 Logout</button>
+        </div>
+      </div>
+      <button class="navbar-toggle" id="navToggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="container hero-content">
+      <h1 class="animate-fade-in-up">Experience <span class="text-gradient">Live Music</span> Like Never Before</h1>
+      <p class="animate-fade-in-up delay-1">Discover and book tickets for the most electrifying concerts around the world. Premium seats, instant e-tickets, unforgettable memories.</p>
+      <div class="hero-actions animate-fade-in-up delay-2">
+        <a href="#concerts" class="btn btn-primary btn-lg">🎫 Explore Concerts</a>
+        <a href="/register.html" class="btn btn-secondary btn-lg">Create Account</a>
+      </div>
+      <div class="hero-stats animate-fade-in-up delay-3">
+        <div class="hero-stat"><div class="number">500+</div><div class="label">Live Events</div></div>
+        <div class="hero-stat"><div class="number">50K+</div><div class="label">Tickets Sold</div></div>
+        <div class="hero-stat"><div class="number">100+</div><div class="label">Artists</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search & Filter -->
+  <section class="search-section container">
+    <div class="search-bar" id="searchBar">
+      <div style="position:relative;flex:1;min-width:200px;">
+        <span class="search-icon" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);">🔍</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search concerts or artists..." style="padding-left:2.5rem;">
+      </div>
+      <select class="filter-select" id="filterCity">
+        <option value="">All Cities</option>
+      </select>
+      <select class="filter-select" id="filterCategory">
+        <option value="">All Genres</option>
+      </select>
+      <select class="filter-select" id="filterSort">
+        <option value="date_asc">Date (Soonest)</option>
+        <option value="date_desc">Date (Latest)</option>
+        <option value="price_asc">Price (Low-High)</option>
+        <option value="price_desc">Price (High-Low)</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Concert Listings -->
+  <section class="concerts-section container" id="concerts">
+    <div class="section-header">
+      <h2>🔥 <span class="text-gradient">Upcoming Concerts</span></h2>
+      <span id="concertCount" style="color:var(--text-muted);font-size:0.9rem;"></span>
+    </div>
+    <div class="concert-grid" id="concertGrid">
+      <!-- Concert cards rendered by JS -->
+    </div>
+    <div class="empty-state hidden" id="emptyState">
+      <div class="icon">🎵</div>
+      <h3>No concerts found</h3>
+      <p>Try adjusting your search or filters to discover more events.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>🎵 <span class="text-gradient">ConcertVibe</span></h3>
+        <p>Your premium destination for live concert tickets. Experience the magic of music, one ticket at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="/">Home</a>
+        <a href="#concerts">Concerts</a>
+        <a href="/history.html">My Bookings</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Contact Us</a>
+        <a href="#">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ConcertVibe. All rights reserved. Made with 🎵 for music lovers.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/countdown.js"></script>
+  <script src="/js/concerts.js"></script>
+</body>
+</html>

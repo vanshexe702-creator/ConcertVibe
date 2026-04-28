@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings — ConcertVibe</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <a href="/" class="navbar-brand"><span class="icon">🎵</span><span>ConcertVibe</span></a>
+    <div class="navbar-links" id="navLinks"><a href="/">Home</a><a href="/#concerts">Concerts</a><a href="/history.html" class="active">My Bookings</a></div>
+    <div class="navbar-actions">
+      <div id="authButtons"><a href="/login.html" class="btn btn-ghost btn-sm">Login</a></div>
+      <div id="userMenu" class="hidden" style="display:none"><button class="btn btn-ghost btn-sm" id="userMenuBtn">👤 <span id="userName"></span></button></div>
+    </div>
+  </nav>
+
+  <div class="history-page container">
+    <div class="page-header">
+      <h1>📋 My <span class="text-gradient">Bookings</span></h1>
+      <p style="margin-top:var(--space-sm)">View and manage all your concert ticket bookings</p>
+    </div>
+
+    <div class="booking-list" id="bookingList">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="empty-state hidden" id="emptyState">
+      <div class="icon">🎫</div>
+      <h3>No bookings yet</h3>
+      <p>You haven't booked any concert tickets yet. Explore upcoming concerts and grab your seats!</p>
+      <a href="/" class="btn btn-primary">Browse Concerts</a>
+    </div>
+  </div>
+
+  <!-- Cancel Confirmation Modal -->
+  <div class="modal-overlay hidden" id="cancelModal">
+    <div class="modal">
+      <div class="modal-header"><h3>Cancel Booking</h3><button class="modal-close" id="cancelModalClose">✕</button></div>
+      <div class="modal-body">
+        <p>Are you sure you want to cancel this booking? Your refund will be processed within 5-7 business days.</p>
+        <p style="margin-top:var(--space-md);font-weight:600;" id="cancelBookingId"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="cancelModalCancel">Keep Booking</button>
+        <button class="btn btn-danger" id="cancelModalConfirm">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/history.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Concerts — Admin Panel</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/admin/dashboard.html" class="navbar-brand"><span class="icon">🛡️</span><span>Admin Panel</span></a>
+    <div class="navbar-actions"><a href="/" class="btn btn-ghost btn-sm" target="_blank">View Site</a><button class="btn btn-danger btn-sm" id="adminLogout">Logout</button></div>
+  </nav>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header"><h3>Navigation</h3></div>
+      <nav class="admin-nav">
+        <a href="/admin/dashboard.html"><span class="nav-icon">📊</span>Dashboard</a>
+        <a href="/admin/concerts.html" class="active"><span class="nav-icon">🎵</span>Concerts</a>
+        <a href="/admin/bookings.html"><span class="nav-icon">🎫</span>Bookings</a>
+        <a href="/admin/seats.html"><span class="nav-icon">🪑</span>Seat Management</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-page-header">
+        <h1>🎵 Manage Concerts</h1>
+        <button class="btn btn-primary" id="addConcertBtn">+ Add Concert</button>
+      </div>
+      <div class="data-table-container">
+        <table class="data-table" id="concertsTable">
+          <thead><tr><th>Concert</th><th>Artist</th><th>Venue</th><th>Date</th><th>Price</th><th>Seats</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="concertsBody"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add/Edit Concert Modal -->
+  <div class="modal-overlay hidden" id="concertModal">
+    <div class="modal" style="max-width:650px;">
+      <div class="modal-header"><h3 id="modalTitle">Add Concert</h3><button class="modal-close" id="modalClose">✕</button></div>
+      <div class="modal-body">
+        <form id="concertForm" class="admin-form">
+          <input type="hidden" id="editConcertId">
+          <div class="form-row">
+            <div class="form-group"><label>Title*</label><input type="text" class="form-input" id="cTitle" required></div>
+            <div class="form-group"><label>Artist*</label><input type="text" class="form-input" id="cArtist" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Venue*</label><input type="text" class="form-input" id="cVenue" required></div>
+            <div class="form-group"><label>City*</label><input type="text" class="form-input" id="cCity" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Date*</label><input type="date" class="form-input" id="cDate" required></div>
+            <div class="form-group"><label>Time*</label><input type="time" class="form-input" id="cTime" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Regular Price ($)*</label><input type="number" class="form-input" id="cPrice" step="0.01" required></div>
+            <div class="form-group"><label>VIP Price ($)</label><input type="number" class="form-input" id="cVipPrice" step="0.01"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Total Seats*</label><input type="number" class="form-input" id="cSeats" value="150" required></div>
+            <div class="form-group"><label>Category</label><input type="text" class="form-input" id="cCategory" placeholder="Rock, Pop, etc."></div>
+          </div>
+          <div class="form-group"><label>Description</label><textarea class="form-input" id="cDesc" rows="3" style="resize:vertical;"></textarea></div>
+          <div class="form-group"><label>Image URL</label><input type="text" class="form-input" id="cImage" placeholder="/assets/concert.jpg"></div>
+          <div class="form-group" id="statusGroup" style="display:none;">
+            <label>Status</label>
+            <select class="form-select" id="cStatus"><option value="upcoming">Upcoming</option><option value="ongoing">Ongoing</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="modalCancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveConcertBtn">Save Concert</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin/concerts.js"></script>
+</body>
+</html>
